@@ -8,7 +8,6 @@ test('Locators', async()=>{
  );
  const page = await browser.newPage();
  await page.goto('https://www.kohls.com/');
- await Promise.all([])
  const pageTitle = await  page.title();
  await expect(page).toHaveTitle(pageTitle);
  console.log(pageTitle);
@@ -19,11 +18,19 @@ test('Locators', async()=>{
  const signin = await page.locator('a[title="Account"]');
  await expect(signin).toBeVisible();
  await signin.click();
+
+ await page.goto('https://www.kohls.com/myaccount/signin.jsp');
+ const pageSignin = await  page.title();
+ await expect(page).toHaveTitle(pageSignin);
+ console.log(pageSignin);
+ const pagetsignUrl = await page.url();
+ await expect(page).toHaveURL(pagetsignUrl);
+ console.log(pagetsignUrl);
+ 
+ const username = await page.locator('#signin-email');
+ await expect(page).toHaveURL(pagetsignUrl)
+ await username.fill('Trends');
 //  await expect(signin).toBeVisible()
 // await page.waitForNavigation();
 
-
-
-
- 
 });
